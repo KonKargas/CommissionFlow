@@ -1,0 +1,13 @@
+Name: Apostolos Zarras
+AFM: 130456093
+Receipts:
+Receipt ID: 1001
+Date: 25/2/2026
+Kind: Coats
+Sales: 2000
+Items: 10
+Company: Hand Made Clothes
+Country: Greece
+City: Ioannina
+Street: Kaloudi
+Number: 10

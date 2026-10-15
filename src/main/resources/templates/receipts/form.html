@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title th:text="${receipt.receiptId == null}
+                    ? 'CommissionFlow | Add Receipt'
+                    : 'CommissionFlow | Edit Receipt'">
+        CommissionFlow | Receipt
+    </title>
+    
+    <!-- Favicon -->
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logo.ico}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/SidebarStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/ReceiptFormStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/FooterStyle.css}">
+          
+          	<link rel="stylesheet"
+	  	href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+
+<div class="page-container">
+
+    <main class="form-page-content">
+
+
+        <!-- HEADER -->
+
+        <header class="page-header">
+
+            <div>
+
+                <p class="page-label"
+                   th:text="${receipt.receiptId == null}
+                            ? 'NEW RECEIPT'
+                            : 'EDIT RECEIPT'">
+
+                    NEW RECEIPT
+
+                </p>
+
+
+                <h1 th:text="${receipt.receiptId == null}
+                             ? 'Add Receipt'
+                             : 'Edit Receipt'">
+
+                    Add Receipt
+
+                </h1>
+
+
+                <p class="page-description"
+                   th:text="${receipt.receiptId == null}
+                            ? 'Record a new sales receipt and assign it to a representative and artisanship.'
+                            : 'Update the selected sales receipt.'">
+
+                    Record a new sales receipt.
+
+                </p>
+
+            </div>
+
+
+            <a th:href="${returnUrl}"
+			   class="back-button">
+			
+			    ← Back
+			
+			</a>
+
+        </header>
+
+
+        <!-- FORM CARD -->
+
+        <section class="form-card">
+
+
+            <div class="form-card-header">
+
+                <div class="form-icon">
+                    <i class="fi fi-ts-file-invoice-dollar"></i>
+                </div>
+
+                <div>
+
+                    <h2>
+                        Receipt Information
+                    </h2>
+
+                    <p>
+                        Enter the sale details and assign the related entities.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form th:action="@{/receipts/save}"
+                  th:object="${receipt}"
+                  method="post"
+                  class="receipt-form">
+
+
+                <!-- ID FOR EDIT -->
+
+                <input type="hidden"
+                       th:field="*{receiptId}">
+                       
+                <input type="hidden"
+				       name="returnUrl"
+				       th:value="${returnUrl}">
+
+
+                <!-- =========================
+                     BASIC INFORMATION
+                ========================== -->
+
+                <div class="form-section">
+
+                    <h3>
+                        Basic Information
+                    </h3>
+
+
+                    <div class="form-grid">
+
+
+                        <!-- RECEIPT CODE -->
+
+                        <div class="form-group">
+
+                            <label for="receiptCode">
+                                Receipt Code
+                                <span class="required">*</span>
+                            </label>
+
+                            <input type="number"
+                                   id="receiptCode"
+                                   th:field="*{receiptCode}"
+                                   placeholder="e.g. 1001"
+                                   required>
+                                   
+                             <div class="field-warning"
+							     th:if="${receiptCodeWarning != null}">
+							
+							    <i class="fi fi-rs-triangle-warning"></i>
+							
+							    <span th:text="${receiptCodeWarning}">
+							        A receipt with this code already exists.
+							    </span>
+							
+							</div>
+
+                        </div>
+
+
+                        <!-- DATE -->
+
+                        <div class="form-group">
+
+                            <label for="salesDate">
+                                Sale Date
+                                <span class="required">*</span>
+                            </label>
+
+                            <input type="date"
+                                   id="salesDate"
+                                   th:field="*{salesDate}"
+                                   required>
+
+                        </div>
+
+
+                        <!-- TYPE -->
+
+                        <div class="form-group">
+
+                            <label for="receiptType">
+                                Product Category
+                                <span class="required">*</span>
+                            </label>
+
+                            <select id="receiptType"
+                                    th:field="*{receiptType}"
+                                    required>
+
+                                <option value="">
+                                    Select category
+                                </option>
+
+                                <option value="TROUSERS">
+                                    Trousers
+                                </option>
+
+                                <option value="SKIRTS">
+                                    Skirts
+                                </option>
+
+                                <option value="BLOUSES">
+                                    Blouses
+                                </option>
+
+                                <option value="COATS">
+                                    Coats
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- ITEMS -->
+
+                        <div class="form-group">
+
+                            <label for="salesAmount">
+                                Items Sold
+                                <span class="required">*</span>
+                            </label>
+
+                            <input type="number"
+                                   id="salesAmount"
+                                   th:field="*{salesAmount}"
+                                   min="1"
+                                   placeholder="e.g. 10"
+                                   required>
+
+                        </div>
+
+
+                        <!-- SALES VALUE -->
+
+                        <div class="form-group full-width">
+
+                            <label for="salesPrice">
+                                Sales Value
+                                <span class="required">*</span>
+                            </label>
+
+                            <div class="currency-input">
+
+                                <span class="currency-symbol">
+                                    €
+                                </span>
+
+                                <input type="number"
+                                       id="salesPrice"
+                                       th:field="*{salesPrice}"
+                                       min="0"
+                                       step="0.01"
+                                       placeholder="e.g. 2000.00"
+                                       required>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     RELATIONSHIPS
+                ========================== -->
+
+                <div class="form-section">
+
+                    <h3>
+                        Sales Assignment
+                    </h3>
+
+
+                    <div class="form-grid">
+
+
+                        <!-- REPRESENTATIVE -->
+
+                        <div class="form-group">
+
+                            <label for="representative">
+                                Representative
+                                <span class="required">*</span>
+                            </label>
+
+                            <select id="representative"
+						        th:field="*{representative}"
+						        required>
+						
+						    <option value="">
+						        Select representative
+						    </option>
+						
+						    <option th:each="rep : ${representatives}"
+						            th:value="${rep.repId}"
+						            th:text="${rep.fullName}"
+						            th:selected="${receipt.representative != null
+						                         and receipt.representative.repId == rep.repId}">
+						    </option>
+						
+						</select>
+
+                            <span class="field-hint">
+                                Representative responsible for this sale.
+                            </span>
+
+                        </div>
+
+
+                        <!-- ARTISANSHIP -->
+
+                        <div class="form-group">
+
+                            <label for="artisanship">
+                                Artisanship
+                                <span class="required">*</span>
+                            </label>
+
+                            <select id="artisanship"
+                                    th:field="*{artisanship}"
+                                    required>
+
+                                <option value="">
+                                    Select artisanship
+                                </option>
+
+                                <option th:each="artisanship : ${artisanships}"
+                                        th:value="${artisanship.artisanshipId}"
+                                        th:text="${artisanship.artisanshipName}">
+                                    Hand Made Clothes
+                                </option>
+
+                            </select>
+
+                            <span class="field-hint">
+                                Clothing company associated with this receipt.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     ACTIONS
+                ========================== -->
+
+                <div class="form-actions">
+
+                    <a th:href="${returnUrl}"
+					   class="cancel-button">
+					
+					    Cancel
+					
+					</a>
+
+
+                    <button type="submit"
+                            class="save-button">
+
+                        <span th:text="${receipt.receiptId == null}
+                                       ? 'Add Receipt'
+                                       : 'Save Changes'">
+
+                            Add Receipt
+
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</div>
+
+</body>
+</html>

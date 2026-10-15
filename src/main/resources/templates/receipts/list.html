@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CommissionFlow | Receipts</title>
+    
+    <!-- Favicon -->
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logo.ico}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/SidebarStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/ReceiptStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/FooterStyle.css}">
+          
+          	<link rel="stylesheet"
+	  	href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+
+<div class="page-container">
+
+    <main class="receipts-content">
+
+        <header class="page-header">
+
+            <div>
+
+                <p class="page-label">
+                    SALES RECORDS
+                </p>
+
+                <h1>Receipts</h1>
+
+                <p class="page-description">
+                    Manage all recorded sales receipts.
+                </p>
+
+            </div>
+
+            <a th:href="@{/receipts/new}"
+               class="primary-button">
+
+                <span class="button-icon">+</span>
+
+                Add Receipt
+
+            </a>
+
+        </header>
+
+
+        <section class="summary-card">
+
+            <div class="summary-icon">
+                <i class="fi fi-ts-file-invoice-dollar"></i>
+            </div>
+
+            <div>
+
+                <span class="summary-label">
+                    Total Receipts
+                </span>
+
+                <strong th:text="${receipts.size()}">
+                    0
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <section class="receipts-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>Sales Receipts</h2>
+
+                    <p>
+                        All recorded sales transactions.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="empty-state"
+                 th:if="${#lists.isEmpty(receipts)}">
+
+                <div class="empty-icon">
+                    R
+                </div>
+
+                <h3>No receipts yet</h3>
+
+                <p>
+                    Add your first receipt to start tracking
+                    sales and commissions.
+                </p>
+
+                <a th:href="@{/receipts/new}"
+                   class="secondary-button">
+
+                    Add Receipt
+
+                </a>
+
+            </div>
+
+
+            <div class="table-wrapper"
+                 th:unless="${#lists.isEmpty(receipts)}">
+
+                <table class="receipts-table">
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Code</th>
+
+                        <th>Date</th>
+
+                        <th>Type</th>
+
+                        <th>Representative</th>
+
+                        <th>Artisanship</th>
+
+                        <th>Items</th>
+
+                        <th>Sales Value</th>
+
+                        <th class="actions-column">
+                            Actions
+                        </th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    <tr th:each="receipt : ${receipts}">
+
+                        <td>
+                            <span class="receipt-code"
+                                  th:text="${receipt.receiptCode}">
+                                1001
+                            </span>
+                        </td>
+
+                        <td th:text="${receipt.salesDate}">
+                            2026-10-05
+                        </td>
+
+                        <td>
+
+                            <span class="type-badge"
+                                  th:text="${receipt.receiptType}">
+                                TROUSERS
+                            </span>
+
+                        </td>
+
+                        <td th:text="${receipt.representative != null
+						        ? receipt.representative.fullName
+						        : '-'}">
+						    -
+						</td>
+
+                        <td th:text="${receipt.artisanship != null
+						        ? receipt.artisanship.artisanshipName
+						        : '-'}">
+						    -
+						</td>
+
+                        <td th:text="${receipt.salesAmount}">
+                            10
+                        </td>
+
+                        <td>
+
+                            <strong th:text="${receipt.salesPrice}">
+                                2000.00
+                            </strong>
+
+                        </td>
+
+                        <td>
+
+                            <div class="table-actions">
+
+                                <a th:href="@{/receipts/edit/{id}
+                                           (id=${receipt.receiptId})}"
+                                   class="action-button edit-button">
+
+                                    Edit
+
+                                </a>
+
+                                <form th:action="@{/receipts/delete/{id}
+                                                 (id=${receipt.receiptId})}"
+                                      method="post"
+                                      class="delete-form">
+
+                                    <button type="submit"
+                                            class="action-button delete-button"
+                                            onclick="return confirm('Delete this receipt?');">
+
+                                        Delete
+
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</div>
+
+</body>
+</html>

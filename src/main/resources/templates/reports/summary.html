@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        CommissionFlow | Summary Report
+    </title>
+    
+    <!-- Favicon -->
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logo.ico}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/SidebarStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/ReportStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/FooterStyle.css}">
+          
+          	<link rel="stylesheet"
+	  	href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css">
+
+</head>
+
+
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+
+<div class="page-container">
+
+    <main class="reports-content">
+
+
+        <!-- =========================
+             HEADER
+        ========================== -->
+
+        <header class="page-header report-page-header">
+
+            <div>
+
+                <p class="page-label">
+                    SUMMARY REPORT
+                </p>
+
+                <h1>
+                    Business Overview
+                </h1>
+
+                <p class="page-description">
+                    High-level overview of representatives,
+                    receipts, sales and commissions.
+                </p>
+
+            </div>
+
+
+            <a th:href="@{/reports}"
+               class="back-button">
+
+                ← Back to Reports
+
+            </a>
+
+        </header>
+
+
+
+        <!-- =========================
+             MAIN STATISTICS
+        ========================== -->
+
+        <section class="report-stats-grid">
+
+
+            <div class="report-stat-card">
+
+                <span class="stat-label">
+                    Representatives
+                </span>
+
+                <strong class="report-stat-value"
+                        th:text="${representativesCount}">
+                    0
+                </strong>
+
+                <span class="stat-description">
+                    Registered representatives
+                </span>
+
+            </div>
+
+
+            <div class="report-stat-card">
+
+                <span class="stat-label">
+                    Artisanships
+                </span>
+
+                <strong class="report-stat-value"
+                        th:text="${artisanshipsCount}">
+                    0
+                </strong>
+
+                <span class="stat-description">
+                    Registered artisanships
+                </span>
+
+            </div>
+
+
+            <div class="report-stat-card">
+
+                <span class="stat-label">
+                    Receipts
+                </span>
+
+                <strong class="report-stat-value"
+                        th:text="${receiptsCount}">
+                    0
+                </strong>
+
+                <span class="stat-description">
+                    Stored sales receipts
+                </span>
+
+            </div>
+
+
+            <div class="report-stat-card">
+
+                <span class="stat-label">
+                    Total Sales
+                </span>
+
+                <strong class="report-stat-value">
+
+                    €
+
+                    <span th:text="${#numbers.formatDecimal(
+                            totalSales,
+                            1,
+                            2)}">
+                        0.00
+                    </span>
+
+                </strong>
+
+                <span class="stat-description">
+                    Overall sales value
+                </span>
+
+            </div>
+
+
+            <div class="report-stat-card commission-card">
+
+                <span class="stat-label">
+                    Total Commissions
+                </span>
+
+                <strong class="report-stat-value">
+
+                    €
+
+                    <span th:text="${#numbers.formatDecimal(
+                            totalCommissions,
+                            1,
+                            2)}">
+                        0.00
+                    </span>
+
+                </strong>
+
+                <span class="stat-description">
+                    Calculated representative commissions
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SALES BY CATEGORY
+        ========================== -->
+
+        <section class="report-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Sales by Category
+                    </h2>
+
+                    <p>
+                        Overall sales value grouped by
+                        clothing category.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="category-report-grid">
+
+
+                <div class="category-report-card">
+
+                    <span>
+                        Trousers
+                    </span>
+
+                    <strong>
+
+                        €
+
+                        <span th:text="${#numbers.formatDecimal(
+                                trousersSales,
+                                1,
+                                2)}">
+                            0.00
+                        </span>
+
+                    </strong>
+
+                </div>
+
+
+                <div class="category-report-card">
+
+                    <span>
+                        Skirts
+                    </span>
+
+                    <strong>
+
+                        €
+
+                        <span th:text="${#numbers.formatDecimal(
+                                skirtsSales,
+                                1,
+                                2)}">
+                            0.00
+                        </span>
+
+                    </strong>
+
+                </div>
+
+
+                <div class="category-report-card">
+
+                    <span>
+                        Blouses
+                    </span>
+
+                    <strong>
+
+                        €
+
+                        <span th:text="${#numbers.formatDecimal(
+                                blousesSales,
+                                1,
+                                2)}">
+                            0.00
+                        </span>
+
+                    </strong>
+
+                </div>
+
+
+                <div class="category-report-card">
+
+                    <span>
+                        Coats
+                    </span>
+
+                    <strong>
+
+                        €
+
+                        <span th:text="${#numbers.formatDecimal(
+                                coatsSales,
+                                1,
+                                2)}">
+                            0.00
+                        </span>
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             REPORT NAVIGATION
+        ========================== -->
+
+        <section class="report-footer-panel">
+
+            <div>
+
+                <h2>
+                    Need more detail?
+                </h2>
+
+                <p>
+                    Open the complete system report to review
+                    representatives, artisanships and all receipts.
+                </p>
+
+            </div>
+
+
+            <a th:href="@{/reports/full}"
+               class="primary-report-button">
+
+                View Full Report →
+
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CommissionFlow | Import Data</title>
+    
+    <!-- Favicon -->
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logo.ico}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/SidebarStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/ImportStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/FooterStyle.css}">
+          
+          	<link rel="stylesheet"
+	  	href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+
+<div class="page-container">
+
+    <main class="import-content">
+
+
+        <!-- HEADER -->
+
+        <header class="page-header">
+
+            <div>
+
+                <p class="page-label">
+                    DATA MANAGEMENT
+                </p>
+
+                <h1>Import Data</h1>
+
+                <p class="page-description">
+                    Import sales receipts from supported external files.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <!-- STATUS MESSAGE -->
+
+        <div class="message success-message"
+             th:if="${successMessage != null}">
+
+            <div class="message-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <strong>
+                    Import completed
+                </strong>
+
+                <span th:text="${successMessage}">
+                    Receipts imported successfully.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="message error-message"
+             th:if="${errorMessage != null}">
+
+            <div class="message-icon">
+                !
+            </div>
+
+            <div>
+
+                <strong>
+                    Import failed
+                </strong>
+
+                <span th:text="${errorMessage}">
+                    Unable to import selected file.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- MAIN GRID -->
+
+        <section class="import-grid">
+
+
+            <!-- UPLOAD CARD -->
+
+            <div class="import-card">
+
+                <div class="card-header">
+
+                    <div class="card-icon">
+                        ⇩
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Select Import File
+                        </h2>
+
+                        <p>
+                            Choose a TXT, XML or HTML file containing receipt data.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form th:action="@{/import}"
+                      method="post"
+                      enctype="multipart/form-data"
+                      class="import-form">
+
+                    <label for="file"
+                           class="upload-area">
+
+                        <div class="upload-icon">
+                            ⇧
+                        </div>
+
+                        <h3>
+                            Choose a file to import
+                        </h3>
+
+                        <p>
+                            Click here to browse your computer.
+                        </p>
+
+                        <span class="browse-button">
+                            Browse File
+                        </span>
+
+                        <input type="file"
+                               id="file"
+                               name="file"
+                               accept=".txt,.xml,.html,.htm"
+                               required>
+
+                    </label>
+
+
+                    <div class="selected-file-box">
+
+                        <span class="selected-file-label">
+                            Selected file
+                        </span>
+
+                        <span id="selectedFileName"
+                              class="selected-file-name">
+
+                            No file selected
+
+                        </span>
+
+                    </div>
+
+
+                    <button type="submit"
+                            class="import-button">
+
+                        Import Data
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- INFO CARD -->
+
+            <div class="information-card">
+
+                <div class="card-header">
+
+                    <div class="card-icon">
+                        i
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Import Information
+                        </h2>
+
+                        <p>
+                            Supported formats and expected behavior.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-content">
+
+
+                    <div class="info-item">
+
+                        <div class="format-badge txt-badge">
+                            TXT
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Plain Text
+                            </strong>
+
+                            <span>
+                                Import receipts stored in the legacy text format.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="format-badge xml-badge">
+                            XML
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                XML
+                            </strong>
+
+                            <span>
+                                Import structured receipt data from XML files.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <div class="format-badge html-badge">
+                            HTML
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                HTML
+                            </strong>
+
+                            <span>
+                                Import receipt information from supported HTML files.
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-divider"></div>
+
+
+                    <div class="import-note">
+
+                        <strong>
+                            Before importing
+                        </strong>
+
+                        <p>
+                            Representatives and artisanships referenced by the
+                            imported receipts must be of valid format.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROCESS OVERVIEW -->
+
+        <section class="process-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Import Process
+                    </h2>
+
+                    <p>
+                        How imported data is processed by CommissionFlow.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="process-grid">
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Select File
+                        </strong>
+
+                        <span>
+                            Choose a supported receipt file.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="process-arrow">
+                    →
+                </div>
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Parse Data
+                        </strong>
+
+                        <span>
+                            CommissionFlow reads the file format.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="process-arrow">
+                    →
+                </div>
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Validate
+                        </strong>
+
+                        <span>
+                            Imported receipt information is checked.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="process-arrow">
+                    →
+                </div>
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        4
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Store
+                        </strong>
+
+                        <span>
+                            Valid receipts are stored in the database.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</div>
+
+
+<script>
+
+    const fileInput =
+            document.getElementById("file");
+
+    const fileName =
+            document.getElementById("selectedFileName");
+
+
+    fileInput.addEventListener(
+        "change",
+        function () {
+
+            if (this.files.length > 0) {
+
+                fileName.textContent =
+                        this.files[0].name;
+
+            } else {
+
+                fileName.textContent =
+                        "No file selected";
+
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title th:text="${artisanship.artisanshipId == null}
+                    ? 'CommissionFlow | Add Artisanship'
+                    : 'CommissionFlow | Edit Artisanship'">
+
+        CommissionFlow | Artisanship
+
+    </title>
+    
+    <!-- Favicon -->
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logo.ico}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/SidebarStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/ArtisanshipFormStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/FooterStyle.css}">
+          
+           
+<link rel="stylesheet"
+  	href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css">
+
+<link rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css">
+
+<link rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+
+<div class="page-container">
+
+    <main class="form-page-content">
+
+
+        <!-- HEADER -->
+
+        <header class="page-header">
+
+            <div>
+
+                <p class="page-label"
+                   th:text="${artisanship.artisanshipId == null}
+                            ? 'NEW ARTISANSHIP'
+                            : 'EDIT ARTISANSHIP'">
+
+                    NEW ARTISANSHIP
+
+                </p>
+
+
+                <h1 th:text="${artisanship.artisanshipId == null}
+                             ? 'Add Artisanship'
+                             : 'Edit Artisanship'">
+
+                    Add Artisanship
+
+                </h1>
+
+
+                <p class="page-description">
+                    Enter the company and address information.
+                </p>
+
+            </div>
+
+
+            <a th:href="${returnUrl != null ? returnUrl : '/artisanships'}"
+			   class="back-button">
+			    ← Back
+			</a>
+
+        </header>
+
+
+        <!-- CARD -->
+
+        <section class="form-card">
+
+
+            <div class="form-card-header">
+
+                <div class="form-icon">
+                    <i class="fi fi-ts-apartment"></i>
+                </div>
+
+                <div>
+
+                    <h2>
+                        Artisanship Information
+                    </h2>
+
+                    <p>
+                        Company identification and contact details.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form th:action="@{/artisanships/save}"
+                  th:object="${artisanship}"
+                  method="post"
+                  class="artisanship-form">
+
+
+                <input type="hidden"
+                       th:field="*{artisanshipId}">
+
+
+                <input type="hidden"
+                       th:field="*{artisanshipAddress.addressId}">
+
+
+                <!-- NAME -->
+
+                <div class="form-section">
+
+                    <h3>Company</h3>
+
+                    <div class="form-group">
+
+                        <label for="artisanshipName">
+                            Artisanship Name
+                            <span class="required">*</span>
+                        </label>
+
+                        <input type="text"
+                               id="artisanshipName"
+                               th:field="*{artisanshipName}"
+                               placeholder="e.g. Hand Made Clothes"
+                               required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ADDRESS -->
+
+                <div class="form-section">
+
+                    <h3>Address Information</h3>
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label for="country">
+                                Country
+                            </label>
+
+                            <input type="text"
+                                   id="country"
+                                   th:field="*{artisanshipAddress.country}"
+                                   placeholder="e.g. Greece">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="city">
+                                City
+                            </label>
+
+                            <input type="text"
+                                   id="city"
+                                   th:field="*{artisanshipAddress.city}"
+                                   placeholder="e.g. Ioannina">
+
+                        </div>
+
+
+                        <div class="form-group street-field">
+
+                            <label for="street">
+                                Street
+                            </label>
+
+                            <input type="text"
+                                   id="street"
+                                   th:field="*{artisanshipAddress.street}"
+                                   placeholder="e.g. Kaloudi">
+
+                        </div>
+
+
+                        <div class="form-group number-field">
+
+                            <label for="number">
+                                Number
+                            </label>
+
+                            <input type="number"
+                                   id="number"
+                                   th:field="*{artisanshipAddress.number}"
+                                   placeholder="10">
+
+                        </div>
+
+
+                        <div class="form-group phone-field">
+
+                            <label for="phoneNumber">
+                                Phone Number
+                            </label>
+
+                            <input type="text"
+                                   id="phoneNumber"
+                                   th:field="*{artisanshipAddress.phoneNumber}"
+                                   placeholder="+30 26510 00000">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="form-actions">
+
+                    <a th:href="${returnUrl != null ? returnUrl : '/artisanships'}"
+					   class="cancel-button">
+					    Cancel
+					</a>
+
+
+                    <button type="submit"
+                            class="save-button">
+
+                        <span th:text="${artisanship.artisanshipId == null}
+                                       ? 'Add Artisanship'
+                                       : 'Save Changes'">
+
+                            Add Artisanship
+
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,460 @@
+.artisanships-content {
+    flex: 1;
+
+    padding: 42px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.page-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 28px;
+}
+
+.page-description {
+    max-width: 650px;
+
+    margin: 9px 0 0;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.primary-button,
+.secondary-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 12px 18px;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.primary-button {
+    color: white;
+
+    background: var(--primary);
+
+    box-shadow:
+        0 5px 15px rgba(37, 99, 235, 0.20);
+}
+
+.primary-button:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+}
+
+.secondary-button {
+    margin-top: 16px;
+
+    color: var(--primary);
+
+    background: #eef4ff;
+}
+
+.secondary-button:hover {
+    background: #dbeafe;
+}
+
+.button-icon {
+    font-size: 18px;
+}
+
+/* =========================
+   SUMMARY
+========================= */
+
+.summary-card {
+    width: fit-content;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 17px 20px;
+
+    margin-bottom: 22px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 11px;
+
+    box-shadow:
+        0 2px 8px rgba(15, 23, 42, 0.035);
+}
+
+.summary-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #eff6ff;
+
+    color: var(--primary);
+
+    font-weight: 700;
+}
+
+.summary-card > div:last-child {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.summary-label {
+    color: var(--text-secondary);
+
+    font-size: 11px;
+}
+
+.summary-card strong {
+    margin-top: 3px;
+
+    font-size: 21px;
+}
+
+/* =========================
+   PANEL
+========================= */
+
+.artisanships-panel {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 13px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 2px 8px rgba(15, 23, 42, 0.035);
+}
+
+.panel-header {
+    padding: 23px 25px;
+
+    border-bottom: 1px solid #edf0f4;
+}
+
+.panel-header h2 {
+    margin: 0;
+
+    font-size: 17px;
+}
+
+.panel-header p {
+    margin: 6px 0 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.artisanships-table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.artisanships-table thead {
+    background: #f8fafc;
+}
+
+.artisanships-table th {
+    padding: 14px 20px;
+
+    text-align: left;
+
+    color: #7a8799;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.6px;
+
+    text-transform: uppercase;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.artisanships-table td {
+    padding: 17px 20px;
+
+    border-bottom: 1px solid #edf0f4;
+
+    color: #536278;
+
+    font-size: 13px;
+
+    vertical-align: middle;
+}
+
+.artisanships-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.artisanships-table tbody tr:hover {
+    background: #fafbfd;
+}
+
+.artisanships-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* =========================
+   ARTISANSHIP
+========================= */
+
+.artisanship-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+.artisanship-avatar {
+    width: 41px;
+    height: 41px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dbeafe,
+            #eff6ff
+        );
+
+    color: var(--primary);
+
+    font-weight: 700;
+}
+
+.artisanship-info > div:last-child {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.artisanship-info strong {
+    color: var(--text-primary);
+
+    font-size: 13px;
+}
+
+.artisanship-info span {
+    margin-top: 4px;
+
+    color: #98a3b3;
+
+    font-size: 11px;
+}
+
+.phone-number {
+    white-space: nowrap;
+}
+
+.empty-value {
+    color: #aab4c2;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.actions-column {
+    width: 170px;
+}
+
+.table-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+.action-button {
+    min-height: 33px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 12px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.action-button:hover {
+    transform: translateY(-1px);
+}
+
+.edit-button {
+    color: #475569;
+
+    background: #f1f5f9;
+}
+
+.edit-button:hover {
+    background: #e2e8f0;
+}
+
+.delete-button {
+    color: var(--danger);
+
+    background: var(--danger-light);
+}
+
+.delete-button:hover {
+    background: #fee2e2;
+}
+
+.delete-form {
+    margin: 0;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-state {
+    min-height: 340px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+
+    text-align: center;
+}
+
+.empty-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 16px;
+
+    border-radius: 14px;
+
+    background: #eff6ff;
+
+    color: var(--primary);
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.empty-state h3 {
+    margin: 0 0 8px;
+}
+
+.empty-state p {
+    max-width: 390px;
+
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .artisanships-content {
+        padding: 30px;
+    }
+
+    .page-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+}

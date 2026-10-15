@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CommissionFlow | Reports</title>
+    
+    <!-- Favicon -->
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logo.ico}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/SidebarStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/ReportStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/FooterStyle.css}">
+          
+          	<link rel="stylesheet"
+	  	href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+
+<div class="page-container">
+
+    <main class="reports-content">
+
+
+        <header class="page-header">
+
+            <div>
+
+                <p class="page-label">
+                    BUSINESS ANALYTICS
+                </p>
+
+                <h1>
+                    Reports
+                </h1>
+
+                <p class="page-description">
+                    Review sales, representatives,
+                    commissions and business activity.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <section class="report-selection">
+
+
+            <a th:href="@{/reports/summary}"
+               class="report-card">
+
+                <div class="report-icon">
+                    <i class="fi fi-tr-newspaper"></i>
+                </div>
+
+                <div class="report-card-content">
+
+                    <span class="report-type">
+                        OVERVIEW
+                    </span>
+
+                    <h2>
+                        Summary Report
+                    </h2>
+
+                    <p>
+                        View a concise summary of representatives,
+                        receipts, sales, commissions and product
+                        category performance.
+                    </p>
+
+                    <span class="report-action">
+                        View Summary →
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <a th:href="@{/reports/full}"
+               class="report-card">
+
+                <div class="report-icon">
+                    <i class="fi fi-tr-newspaper-open"></i>
+                </div>
+
+                <div class="report-card-content">
+
+                    <span class="report-type">
+                        DETAILED
+                    </span>
+
+                    <h2>
+                        Full Report
+                    </h2>
+
+                    <p>
+                        Review complete representative,
+                        artisanship and receipt information,
+                        including sales and commissions.
+                    </p>
+
+                    <span class="report-action">
+                        View Full Report →
+                    </span>
+
+                </div>
+
+            </a>
+
+
+        </section>
+
+    </main>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</div>
+
+</body>
+</html>

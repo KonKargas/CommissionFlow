@@ -1,0 +1,519 @@
+/* ==========================
+   PAGE
+========================== */
+
+.representatives-content {
+    flex: 1;
+
+    padding: 42px;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+.page-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+
+    margin-bottom: 28px;
+}
+
+.page-description {
+    max-width: 650px;
+
+    margin: 9px 0 0;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+/* ==========================
+   BUTTONS
+========================== */
+
+.primary-button,
+.secondary-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 12px 18px;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.primary-button {
+    background: var(--primary);
+
+    color: white;
+
+    box-shadow:
+        0 5px 15px rgba(37, 99, 235, 0.20);
+}
+
+.primary-button:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+}
+
+.secondary-button {
+    margin-top: 16px;
+
+    background: #eef4ff;
+
+    color: var(--primary);
+}
+
+.secondary-button:hover {
+    background: #e0ecff;
+}
+
+.button-icon {
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* ==========================
+   SUMMARY
+========================== */
+
+.summary-card {
+    width: fit-content;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 22px;
+
+    padding: 17px 20px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+    border-radius: 11px;
+
+    box-shadow:
+        0 2px 8px rgba(15, 23, 42, 0.035);
+}
+
+.summary-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.summary-card > div:last-child {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.summary-label {
+    color: var(--text-secondary);
+
+    font-size: 11px;
+}
+
+.summary-card strong {
+    margin-top: 3px;
+
+    font-size: 21px;
+}
+
+/* ==========================
+   PANEL
+========================== */
+
+.representatives-panel {
+    background: white;
+
+    border: 1px solid var(--border);
+    border-radius: 13px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 2px 8px rgba(15, 23, 42, 0.035);
+}
+
+.panel-header {
+    padding: 23px 25px;
+
+    border-bottom: 1px solid #edf0f4;
+}
+
+.panel-header h2 {
+    margin: 0;
+
+    font-size: 17px;
+    font-weight: 650;
+}
+
+.panel-header p {
+    margin: 6px 0 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+}
+
+/* ==========================
+   TABLE
+========================== */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.representatives-table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.representatives-table thead {
+    background: #f8fafc;
+}
+
+.representatives-table th {
+    padding: 14px 20px;
+
+    text-align: left;
+
+    color: #7a8799;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.6px;
+
+    text-transform: uppercase;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.representatives-table td {
+    padding: 17px 20px;
+
+    border-bottom: 1px solid #edf0f4;
+
+    font-size: 13px;
+
+    vertical-align: middle;
+}
+
+.representatives-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.representatives-table tbody tr:hover {
+    background: #fafbfd;
+}
+
+.representatives-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ==========================
+   REPRESENTATIVE
+========================== */
+
+.representative-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+.representative-avatar {
+    width: 41px;
+    height: 41px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dbeafe,
+            #eff6ff
+        );
+
+    color: #2563eb;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.representative-info > div:last-child {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.representative-info strong {
+    color: var(--text-primary);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.representative-info span {
+    margin-top: 4px;
+
+    color: #98a3b3;
+
+    font-size: 11px;
+}
+
+.vat-number {
+    color: #536278;
+
+    font-family:
+        "Consolas",
+        monospace;
+
+    font-size: 12px;
+}
+
+/* ==========================
+   RECEIPTS
+========================== */
+
+.receipt-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 32px;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: #eef4ff;
+
+    color: #2563eb;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* ==========================
+   ACTIONS
+========================== */
+
+.actions-column {
+    width: 300px;
+}
+
+.table-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    flex-wrap: wrap;
+}
+
+.action-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 33px;
+
+    padding: 0 11px;
+
+    border: none;
+    border-radius: 7px;
+
+    font-family: inherit;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.action-button:hover {
+    transform: translateY(-1px);
+}
+
+.manage-button {
+    background: #edf4ff;
+
+    color: #2563eb;
+}
+
+.manage-button:hover {
+    background: #dbeafe;
+}
+
+.edit-button {
+    background: #f1f5f9;
+
+    color: #475569;
+}
+
+.edit-button:hover {
+    background: #e2e8f0;
+}
+
+.delete-button {
+    background: var(--danger-light);
+
+    color: var(--danger);
+}
+
+.delete-button:hover {
+    background: #fee2e2;
+}
+
+.delete-form {
+    margin: 0;
+}
+
+/* ==========================
+   EMPTY
+========================== */
+
+.empty-state {
+    min-height: 340px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 40px;
+}
+
+.empty-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 16px;
+
+    border-radius: 14px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.empty-state h3 {
+    margin: 0 0 8px;
+
+    font-size: 16px;
+}
+
+.empty-state p {
+    max-width: 390px;
+
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width: 900px) {
+
+    .representatives-content {
+        padding: 30px;
+    }
+
+    .page-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .representatives-content {
+        padding: 22px;
+    }
+
+    .actions-column {
+        min-width: 250px;
+    }
+
+}

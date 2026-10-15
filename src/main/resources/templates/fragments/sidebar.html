@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+      
+<body>
+
+<aside class="sidebar" th:fragment="sidebar">
+    
+    <a th:href="@{/dashboard}" class="sidebar-brand">
+            <img class="brand-icon"
+		     th:src="@{/images/logo.png}"
+		     alt="Enerlytics Logo">
+	         
+	         <div class="brand-text">
+		        <h2>CommissionFlow</h2>
+            		<span>Sales Management</span>
+		    </div>
+        </a>
+
+
+    <nav class="sidebar-nav">
+
+        <a th:href="@{/dashboard}"
+           class="sidebar-link"
+           th:classappend="${activePage == 'dashboard'} ? ' active'">
+            <span class="nav-icon">
+			    <i class="fi fi-rs-apps-add"></i>
+			</span>
+			<span>Dashboard</span>
+        </a>
+
+
+        <a th:href="@{/representatives}"
+           class="sidebar-link"
+           th:classappend="${activePage == 'representatives'} ? ' active'">
+            <span class="nav-icon">
+			    <i class="fi fi-ts-employee-man-alt"></i>
+			</span>
+			<span>Representatives</span>
+        </a>
+        
+        <a th:href="@{/artisanships}"
+		   class="sidebar-link"
+		   th:classappend="${activePage == 'artisanships'} ? ' active'">
+		    <span class="nav-icon">
+			    <i class="fi fi-ts-apartment"></i>
+			</span>
+			<span>Artisanships</span>
+		</a>
+
+        <a th:href="@{/receipts}"
+           class="sidebar-link"
+           th:classappend="${activePage == 'receipts'} ? ' active'">
+            <span class="nav-icon">
+			    <i class="fi fi-ts-file-invoice-dollar"></i>
+			</span>
+			<span>Receipts</span>
+        </a>
+
+
+        <a th:href="@{/reports}"
+           class="sidebar-link"
+           th:classappend="${activePage == 'reports'} ? ' active'">
+            <span class="nav-icon">
+			    <i class="fi fi-ts-newspaper"></i>
+			</span>
+			<span>Reports</span>
+        </a>
+
+        <div class="sidebar-section-title">
+            DATA
+        </div>
+
+        <a th:href="@{/import}"
+           class="sidebar-link"
+           th:classappend="${activePage == 'import'} ? ' active'">
+            <span class="nav-icon">
+			    <i class="fi fi-tr-file-import"></i>
+			</span>
+			<span>Import Data</span>
+        </a>
+
+
+        <a th:href="@{/export}"
+           class="sidebar-link"
+           th:classappend="${activePage == 'export'} ? ' active'">
+            <span class="nav-icon">
+			    <i class="fi fi-tr-file-export"></i>
+			</span>
+			<span>Export Data</span>
+        </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="sidebar-version">
+            <span>CommissionFlow</span>
+            <small>Version 2.0.0</small>
+        </div>
+
+    </div>
+
+</aside>
+
+</body>
+</html>

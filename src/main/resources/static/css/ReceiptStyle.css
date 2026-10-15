@@ -1,0 +1,352 @@
+.receipts-content {
+    flex: 1;
+
+    padding: 42px;
+}
+
+/* HEADER */
+
+.page-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 28px;
+}
+
+.page-description {
+    margin: 9px 0 0;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+}
+
+/* BUTTONS */
+
+.primary-button,
+.secondary-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 12px 18px;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.primary-button {
+    background: var(--primary);
+
+    color: white;
+}
+
+.primary-button:hover {
+    background: #1d4ed8;
+}
+
+.secondary-button {
+    margin-top: 16px;
+
+    background: #eef4ff;
+
+    color: var(--primary);
+}
+
+.button-icon {
+    font-size: 18px;
+}
+
+/* SUMMARY */
+
+.summary-card {
+    width: fit-content;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 17px 20px;
+
+    margin-bottom: 22px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 11px;
+}
+
+.summary-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: #eff6ff;
+
+    color: var(--primary);
+
+    font-weight: 700;
+}
+
+.summary-card > div:last-child {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.summary-label {
+    color: var(--text-secondary);
+
+    font-size: 11px;
+}
+
+.summary-card strong {
+    margin-top: 3px;
+
+    font-size: 21px;
+}
+
+/* PANEL */
+
+.receipts-panel {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 13px;
+
+    overflow: hidden;
+}
+
+.panel-header {
+    padding: 23px 25px;
+
+    border-bottom: 1px solid #edf0f4;
+}
+
+.panel-header h2 {
+    margin: 0;
+
+    font-size: 17px;
+}
+
+.panel-header p {
+    margin: 6px 0 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+}
+
+/* TABLE */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.receipts-table {
+    width: 100%;
+
+    border-collapse: collapse;
+}
+
+.receipts-table thead {
+    background: #f8fafc;
+}
+
+.receipts-table th {
+    padding: 14px 18px;
+
+    text-align: left;
+
+    color: #7a8799;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+
+    text-transform: uppercase;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.receipts-table td {
+    padding: 16px 18px;
+
+    border-bottom: 1px solid #edf0f4;
+
+    color: #536278;
+
+    font-size: 12px;
+
+    vertical-align: middle;
+}
+
+.receipts-table tbody tr:hover {
+    background: #fafbfd;
+}
+
+.receipt-code {
+    font-family: Consolas, monospace;
+
+    color: #334155;
+
+    font-weight: 600;
+}
+
+.type-badge {
+    display: inline-flex;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    background: #eef4ff;
+
+    color: #2563eb;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+/* ACTIONS */
+
+.actions-column {
+    width: 150px;
+}
+
+.table-actions {
+    display: flex;
+
+    gap: 7px;
+}
+
+.action-button {
+    min-height: 33px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 12px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    text-decoration: none;
+}
+
+.edit-button {
+    background: #f1f5f9;
+
+    color: #475569;
+}
+
+.delete-button {
+    background: var(--danger-light);
+
+    color: var(--danger);
+}
+
+.delete-form {
+    margin: 0;
+}
+
+/* EMPTY */
+
+.empty-state {
+    min-height: 340px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+
+    text-align: center;
+}
+
+.empty-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 16px;
+
+    border-radius: 14px;
+
+    background: #eff6ff;
+
+    color: var(--primary);
+
+    font-weight: 700;
+}
+
+.empty-state h3 {
+    margin: 0 0 8px;
+}
+
+.empty-state p {
+    margin: 0;
+
+    max-width: 390px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .receipts-content {
+        padding: 30px;
+    }
+
+    .page-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+}

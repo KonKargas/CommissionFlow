@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        CommissionFlow | Full Report
+    </title>
+    
+    <!-- Favicon -->
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logo.ico}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/SidebarStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/ReportStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/FooterStyle.css}">
+          
+          	<link rel="stylesheet"
+	  	href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css">
+
+</head>
+
+
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+
+<div class="page-container">
+
+    <main class="reports-content">
+
+
+        <!-- =========================
+             HEADER
+        ========================== -->
+
+        <header class="page-header report-page-header">
+
+            <div>
+
+                <p class="page-label">
+                    FULL REPORT
+                </p>
+
+                <h1>
+                    Complete Business Report
+                </h1>
+
+                <p class="page-description">
+                    Detailed overview of all representatives,
+                    artisanships, sales, receipts and commissions.
+                </p>
+
+            </div>
+
+
+            <a th:href="@{/reports}"
+               class="back-button">
+
+                ← Back to Reports
+
+            </a>
+
+        </header>
+
+
+
+        <!-- =========================
+             GENERAL OVERVIEW
+        ========================== -->
+
+        <section class="report-stats-grid">
+
+
+            <div class="report-stat-card">
+
+                <span class="stat-label">
+                    Representatives
+                </span>
+
+                <strong class="report-stat-value"
+                        th:text="${representativesCount}">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="report-stat-card">
+
+                <span class="stat-label">
+                    Artisanships
+                </span>
+
+                <strong class="report-stat-value"
+                        th:text="${artisanshipsCount}">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="report-stat-card">
+
+                <span class="stat-label">
+                    Receipts
+                </span>
+
+                <strong class="report-stat-value"
+                        th:text="${receiptsCount}">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="report-stat-card">
+
+                <span class="stat-label">
+                    Total Sales
+                </span>
+
+                <strong class="report-stat-value">
+
+                    €
+
+                    <span th:text="${#numbers.formatDecimal(
+                            totalSales,
+                            1,
+                            2)}">
+                        0.00
+                    </span>
+
+                </strong>
+
+            </div>
+
+
+            <div class="report-stat-card commission-card">
+
+                <span class="stat-label">
+                    Total Commissions
+                </span>
+
+                <strong class="report-stat-value">
+
+                    €
+
+                    <span th:text="${#numbers.formatDecimal(
+                            totalCommissions,
+                            1,
+                            2)}">
+                        0.00
+                    </span>
+
+                </strong>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             CATEGORY TOTALS
+        ========================== -->
+
+        <section class="report-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Sales by Category
+                    </h2>
+
+                    <p>
+                        Overall business sales grouped by category.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="category-report-grid">
+
+
+                <div class="category-report-card">
+
+                    <span>
+                        Trousers
+                    </span>
+
+                    <strong>
+
+                        €
+
+                        <span th:text="${#numbers.formatDecimal(
+                                trousersSales,
+                                1,
+                                2)}">
+                            0.00
+                        </span>
+
+                    </strong>
+
+                </div>
+
+
+                <div class="category-report-card">
+
+                    <span>
+                        Skirts
+                    </span>
+
+                    <strong>
+
+                        €
+
+                        <span th:text="${#numbers.formatDecimal(
+                                skirtsSales,
+                                1,
+                                2)}">
+                            0.00
+                        </span>
+
+                    </strong>
+
+                </div>
+
+
+                <div class="category-report-card">
+
+                    <span>
+                        Blouses
+                    </span>
+
+                    <strong>
+
+                        €
+
+                        <span th:text="${#numbers.formatDecimal(
+                                blousesSales,
+                                1,
+                                2)}">
+                            0.00
+                        </span>
+
+                    </strong>
+
+                </div>
+
+
+                <div class="category-report-card">
+
+                    <span>
+                        Coats
+                    </span>
+
+                    <strong>
+
+                        €
+
+                        <span th:text="${#numbers.formatDecimal(
+                                coatsSales,
+                                1,
+                                2)}">
+                            0.00
+                        </span>
+
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             REPRESENTATIVES
+        ========================== -->
+
+        <section class="report-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Representatives
+                    </h2>
+
+                    <p>
+                        Registered representatives and their
+                        sales performance.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="empty-report-state"
+                 th:if="${#lists.isEmpty(representatives)}">
+
+                No representatives available.
+
+            </div>
+
+
+            <div class="representative-report-list"
+                 th:unless="${#lists.isEmpty(representatives)}">
+
+
+                <article class="representative-report-card"
+                         th:each="representative : ${representatives}">
+
+
+                    <div class="representative-report-header">
+
+                        <div>
+
+                            <span class="section-label">
+                                REPRESENTATIVE
+                            </span>
+
+                            <h3 th:text="${representative.fullName}">
+                                Representative Name
+                            </h3>
+
+                            <span class="representative-vat">
+
+                                VAT:
+
+                                <strong th:text="${representative.vatNumber}">
+                                    000000000
+                                </strong>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="representative-stat-grid">
+
+
+                        <div>
+
+                            <span>
+                                Receipts
+                            </span>
+
+                            <strong th:text="${
+                                    reportService
+                                    .getRepresentativeReceipts(
+                                        representative.repId
+                                    )
+                                    .size()
+                            }">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Total Sales
+                            </span>
+
+                            <strong>
+
+                                €
+
+                                <span th:text="${#numbers.formatDecimal(
+                                        reportService
+                                        .getRepresentativeSales(
+                                            representative.repId
+                                        ),
+                                        1,
+                                        2)}">
+                                    0.00
+                                </span>
+
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Commission
+                            </span>
+
+                            <strong>
+
+                                €
+
+                                <span th:text="${#numbers.formatDecimal(
+                                        reportService
+                                        .getRepresentativeCommission(
+                                            representative.repId
+                                        ),
+                                        1,
+                                        2)}">
+                                    0.00
+                                </span>
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="representative-category-grid">
+
+
+                        <div>
+
+                            <span>
+                                Trousers
+                            </span>
+
+                            <strong>
+
+                                €
+
+                                <span th:text="${#numbers.formatDecimal(
+                                        reportService
+                                        .getRepresentativeCategorySales(
+                                            representative.repId,
+                                            T(com.kkargas.sales.enums.ReceiptType)
+                                            .TROUSERS
+                                        ),
+                                        1,
+                                        2)}">
+                                    0.00
+                                </span>
+
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Skirts
+                            </span>
+
+                            <strong>
+
+                                €
+
+                                <span th:text="${#numbers.formatDecimal(
+                                        reportService
+                                        .getRepresentativeCategorySales(
+                                            representative.repId,
+                                            T(com.kkargas.sales.enums.ReceiptType)
+                                            .SKIRTS
+                                        ),
+                                        1,
+                                        2)}">
+                                    0.00
+                                </span>
+
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Blouses
+                            </span>
+
+                            <strong>
+
+                                €
+
+                                <span th:text="${#numbers.formatDecimal(
+                                        reportService
+                                        .getRepresentativeCategorySales(
+                                            representative.repId,
+                                            T(com.kkargas.sales.enums.ReceiptType)
+                                            .BLOUSES
+                                        ),
+                                        1,
+                                        2)}">
+                                    0.00
+                                </span>
+
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Coats
+                            </span>
+
+                            <strong>
+
+                                €
+
+                                <span th:text="${#numbers.formatDecimal(
+                                        reportService
+                                        .getRepresentativeCategorySales(
+                                            representative.repId,
+                                            T(com.kkargas.sales.enums.ReceiptType)
+                                            .COATS
+                                        ),
+                                        1,
+                                        2)}">
+                                    0.00
+                                </span>
+
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             ARTISANSHIPS
+        ========================== -->
+
+        <section class="report-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Artisanships
+                    </h2>
+
+                    <p>
+                        Registered companies and address details.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper"
+                 th:unless="${#lists.isEmpty(artisanships)}">
+
+
+                <table class="report-table">
+
+                    <thead>
+
+                    <tr>
+
+                        <th>
+                            Name
+                        </th>
+
+                        <th>
+                            Country
+                        </th>
+
+                        <th>
+                            City
+                        </th>
+
+                        <th>
+                            Street
+                        </th>
+
+                        <th>
+                            Number
+                        </th>
+
+                        <th>
+                            Phone
+                        </th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                    <tr th:each="artisanship : ${artisanships}">
+
+
+                        <td th:text="${artisanship.artisanshipName}">
+                            Company
+                        </td>
+
+
+                        <td th:text="${
+                            artisanship.artisanshipAddress != null
+                            ? artisanship.artisanshipAddress.country
+                            : '-'
+                        }">
+                            -
+                        </td>
+
+
+                        <td th:text="${
+                            artisanship.artisanshipAddress != null
+                            ? artisanship.artisanshipAddress.city
+                            : '-'
+                        }">
+                            -
+                        </td>
+
+
+                        <td th:text="${
+                            artisanship.artisanshipAddress != null
+                            ? artisanship.artisanshipAddress.street
+                            : '-'
+                        }">
+                            -
+                        </td>
+
+
+                        <td th:text="${
+                            artisanship.artisanshipAddress != null
+                            ? artisanship.artisanshipAddress.number
+                            : '-'
+                        }">
+                            -
+                        </td>
+
+
+                        <td th:text="${
+                            artisanship.artisanshipAddress != null
+                            && artisanship.artisanshipAddress.phoneNumber != null
+                            ? artisanship.artisanshipAddress.phoneNumber
+                            : '-'
+                        }">
+                            -
+                        </td>
+
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+
+            </div>
+
+
+            <div class="empty-report-state"
+                 th:if="${#lists.isEmpty(artisanships)}">
+
+                No artisanships available.
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             RECEIPTS
+        ========================== -->
+
+        <section class="report-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Sales Receipts
+                    </h2>
+
+                    <p>
+                        Complete list of recorded sales receipts.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper"
+                 th:unless="${#lists.isEmpty(receipts)}">
+
+
+                <table class="report-table">
+
+                    <thead>
+
+                    <tr>
+
+                        <th>
+                            Code
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Representative
+                        </th>
+
+                        <th>
+                            Category
+                        </th>
+
+                        <th>
+                            Artisanship
+                        </th>
+
+                        <th>
+                            Items
+                        </th>
+
+                        <th>
+                            Sales
+                        </th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                    <tr th:each="receipt : ${receipts}">
+
+
+                        <td th:text="${receipt.receiptCode}">
+                            1
+                        </td>
+
+
+                        <td th:text="${receipt.salesDate}">
+                            2026-01-01
+                        </td>
+
+
+                        <td th:text="${
+                            receipt.representative != null
+                            ? receipt.representative.fullName
+                            : '-'
+                        }">
+                            -
+                        </td>
+
+
+                        <td th:text="${receipt.receiptType}">
+                            TROUSERS
+                        </td>
+
+
+                        <td th:text="${
+                            receipt.artisanship != null
+                            ? receipt.artisanship.artisanshipName
+                            : '-'
+                        }">
+                            -
+                        </td>
+
+
+                        <td th:text="${receipt.salesAmount}">
+                            0
+                        </td>
+
+
+                        <td>
+
+                            €
+
+                            <span th:text="${#numbers.formatDecimal(
+                                    receipt.salesPrice,
+                                    1,
+                                    2)}">
+                                0.00
+                            </span>
+
+                        </td>
+
+
+                    </tr>
+
+
+                    </tbody>
+
+                </table>
+
+
+            </div>
+
+
+            <div class="empty-report-state"
+                 th:if="${#lists.isEmpty(receipts)}">
+
+                No receipts available.
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</div>
+
+</body>
+</html>

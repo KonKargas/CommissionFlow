@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CommissionFlow | Dashboard</title>
+    
+    <!-- Favicon -->
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logo.ico}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/SidebarStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/DashboardStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/FooterStyle.css}">
+          
+           
+	<link rel="stylesheet"
+	  	href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css">
+
+</head>
+
+
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+
+<div class="page-container">
+
+    <main class="dashboard-content">
+
+        <!-- HEADER -->
+
+        <header class="dashboard-header">
+
+            <div>
+                <p class="page-label">
+                    OVERVIEW
+                </p>
+
+                <h1>Dashboard</h1>
+
+                <p class="page-description">
+                    Monitor representatives, sales,
+                    receipts and commissions.
+                </p>
+            </div>
+
+        </header>
+
+
+        <!-- STATISTICS -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <div class="stat-card-top">
+                
+                		<span class="stat-label">
+                        Representatives
+                    </span>
+
+                    <div class="stat-icon">
+                        <i class="fi fi-ts-employee-man-alt"></i>
+                    </div>
+                </div>
+
+                <div class="stat-value"
+                     th:text="${representativesCount}">
+                    0
+                </div>
+
+                <span class="stat-description">
+                    Registered sales representatives
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-card-top">
+                
+                		<span class="stat-label">
+                        Receipts
+                    </span>
+
+                    <div class="stat-icon">
+                        <i class="fi fi-ts-file-invoice-dollar"></i>
+                    </div>
+
+                </div>
+
+                <div class="stat-value"
+                     th:text="${receiptsCount}">
+                    0
+                </div>
+
+                <span class="stat-description">
+                    Stored sales receipts
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-card-top">
+
+                    <span class="stat-label">
+                        Total Sales
+                    </span>
+
+                    <div class="stat-icon">
+                        <i class="fi fi-ts-euro"></i>
+                    </div>
+
+                </div>
+
+                <div class="stat-value">
+
+				    €
+				    <span th:text="${#numbers.formatDecimal(
+				            totalSales,
+				            1,
+				            2)}">
+				        0.00
+				    </span>
+				
+				</div>
+
+                <span class="stat-description">
+                    Overall sales value
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-card-top">
+
+                    <span class="stat-label">
+                        Commissions
+                    </span>
+
+                    <div class="stat-icon">
+                        <i class="fi fi-ts-percentage"></i>
+                    </div>
+
+                </div>
+
+                <div class="stat-value">
+
+				    €
+				    <span th:text="${#numbers.formatDecimal(
+				            totalCommissions,
+				            1,
+				            2)}">
+				        0.00
+				    </span>
+				
+				</div>
+
+                <span class="stat-description">
+                    Total calculated commissions
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- MAIN AREA -->
+
+        <section class="dashboard-grid">
+
+
+            <div class="dashboard-panel">
+
+			    <div class="panel-header">
+			
+			        <div>
+			
+			            <h2>
+			                Sales Overview
+			            </h2>
+			
+			            <p>
+			                Sales activity by product category
+			            </p>
+			
+			        </div>
+			
+			    </div>
+			
+			
+			    <div class="sales-overview-grid">
+			
+			
+			        <div class="overview-item">
+			
+			            <div class="overview-top">
+			
+			                <span class="overview-label">
+			                    Trousers
+			                </span>
+			
+			                <span class="overview-symbol">
+			                    T
+			                </span>
+			
+			            </div>
+			
+			            <strong class="overview-value">
+			
+			                €
+			
+			                <span th:text="${#numbers.formatDecimal(
+			                        trousersSales,
+			                        1,
+			                        2)}">
+			                    0.00
+			                </span>
+			
+			            </strong>
+			
+			        </div>
+			
+			
+			        <div class="overview-item">
+			
+			            <div class="overview-top">
+			
+			                <span class="overview-label">
+			                    Skirts
+			                </span>
+			
+			                <span class="overview-symbol">
+			                    S
+			                </span>
+			
+			            </div>
+			
+			            <strong class="overview-value">
+			
+			                €
+			
+			                <span th:text="${#numbers.formatDecimal(
+			                        skirtsSales,
+			                        1,
+			                        2)}">
+			                    0.00
+			                </span>
+			
+			            </strong>
+			
+			        </div>
+			
+			
+			        <div class="overview-item">
+			
+			            <div class="overview-top">
+			
+			                <span class="overview-label">
+			                    Blouses
+			                </span>
+			
+			                <span class="overview-symbol">
+			                    B
+			                </span>
+			
+			            </div>
+			
+			            <strong class="overview-value">
+			
+			                €
+			
+			                <span th:text="${#numbers.formatDecimal(
+			                        blousesSales,
+			                        1,
+			                        2)}">
+			                    0.00
+			                </span>
+			
+			            </strong>
+			
+			        </div>
+			
+			
+			        <div class="overview-item">
+			
+			            <div class="overview-top">
+			
+			                <span class="overview-label">
+			                    Coats
+			                </span>
+			
+			                <span class="overview-symbol">
+			                    C
+			                </span>
+			
+			            </div>
+			
+			            <strong class="overview-value">
+			
+			                €
+			
+			                <span th:text="${#numbers.formatDecimal(
+			                        coatsSales,
+			                        1,
+			                        2)}">
+			                    0.00
+			                </span>
+			
+			            </strong>
+			
+			        </div>
+			
+			
+			    </div>
+			
+			</div>
+
+
+            <div class="dashboard-panel quick-actions">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Quick Actions</h2>
+
+                        <p>
+                            Common operations
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="actions-list">
+
+                    <a th:href="@{/representatives/new(from='dashboard')}"
+   						class="action-item">
+
+                        <span class="action-icon">
+                            <i class="fi fi-rs-user-add"></i>
+                        </span>
+
+                        <div>
+                            <strong>
+                                Add Representative
+                            </strong>
+
+                            <span>
+                                Register a new sales representative
+                            </span>
+                        </div>
+
+                    </a>
+
+
+                    <a th:href="@{/receipts/new(from='dashboard')}"
+   						class="action-item">
+
+                        <span class="action-icon">
+                            <i class="fi fi-tr-add-document"></i>
+                        </span>
+
+                        <div>
+                            <strong>
+                                Add Receipt
+                            </strong>
+
+                            <span>
+                                Record a new sale
+                            </span>
+                        </div>
+
+                    </a>
+
+
+                    <a th:href="@{/import}"
+                       class="action-item">
+
+                        <span class="action-icon">
+                            <i class="fi fi-tr-file-import"></i>
+                        </span>
+
+                        <div>
+                            <strong>
+                                Import Data
+                            </strong>
+
+                            <span>
+                                Import TXT, XML or HTML
+                            </span>
+                        </div>
+
+                    </a>
+
+
+                    <a th:href="@{/reports}"
+                       class="action-item">
+
+                        <span class="action-icon">
+						    <i class="fi fi-ts-newspaper"></i>
+						</span>
+
+                        <div>
+                            <strong>
+                                Generate Report
+                            </strong>
+
+                            <span>
+                                View sales and commissions
+                            </span>
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</div>
+
+</body>
+</html>

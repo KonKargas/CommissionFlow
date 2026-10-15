@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CommissionFlow | Representatives</title>
+    
+    <!-- Favicon -->
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logo.ico}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/SidebarStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/RepresentativeStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/FooterStyle.css}">
+          
+          	<link rel="stylesheet"
+	  	href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+
+<div class="page-container">
+
+    <main class="representatives-content">
+
+
+        <!-- =========================
+             HEADER
+        ========================== -->
+
+        <header class="page-header">
+
+            <div>
+
+                <p class="page-label">
+                    SALES TEAM
+                </p>
+
+                <h1>Representatives</h1>
+
+                <p class="page-description">
+                    Manage sales representatives and access their
+                    sales, receipts and commission information.
+                </p>
+
+            </div>
+
+
+            <a th:href="@{/representatives/new}"
+               class="primary-button">
+
+                <span class="button-icon">+</span>
+
+                Add Representative
+
+            </a>
+
+        </header>
+
+
+        <!-- =========================
+             SUMMARY
+        ========================== -->
+
+        <section class="summary-card">
+
+            <div class="summary-icon">
+                <i class="fi fi-ts-employee-man-alt"></i>
+            </div>
+
+            <div>
+
+                <span class="summary-label">
+                    Registered Representatives
+                </span>
+
+                <strong th:text="${representatives.size()}">
+                    0
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             REPRESENTATIVES
+        ========================== -->
+
+        <section class="representatives-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>Sales Representatives</h2>
+
+                    <p>
+                        View and manage registered representatives.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- EMPTY STATE -->
+
+            <div class="empty-state"
+                 th:if="${#lists.isEmpty(representatives)}">
+
+                <div class="empty-icon">
+                    R
+                </div>
+
+                <h3>No representatives yet</h3>
+
+                <p>
+                    Add your first sales representative to begin
+                    recording receipts and calculating commissions.
+                </p>
+
+                <a th:href="@{/representatives/new}"
+                   class="secondary-button">
+
+                    Add Representative
+
+                </a>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="table-wrapper"
+                 th:unless="${#lists.isEmpty(representatives)}">
+
+                <table class="representatives-table">
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Representative</th>
+
+                        <th>VAT Number</th>
+
+                        <th>Receipts</th>
+
+                        <th class="actions-column">
+                            Actions
+                        </th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                    <tr th:each="representative : ${representatives}">
+
+
+                        <!-- NAME -->
+
+                        <td>
+
+                            <div class="representative-info">
+
+                                <div class="representative-avatar"
+                                     th:text="${#strings.substring(representative.fullName, 0, 1)}">
+
+                                    K
+
+                                </div>
+
+
+                                <div>
+
+                                    <strong
+                                            th:text="${representative.fullName}">
+                                        Apostolos Zarras
+                                    </strong>
+
+                                    <span>
+                                        Sales Representative
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- VAT -->
+
+                        <td>
+
+                            <span class="vat-number"
+                                  th:text="${representative.vatNumber}">
+                                130456093
+                            </span>
+
+                        </td>
+
+
+                        <!-- RECEIPTS -->
+
+                        <td>
+
+                            <span class="receipt-badge"
+                                  th:text="${representative.receipts != null ?
+                                           representative.receipts.size() : 0}">
+
+                                0
+
+                            </span>
+
+                        </td>
+
+
+                        <!-- ACTIONS -->
+
+                        <td>
+
+                            <div class="table-actions">
+
+
+                                <a th:href="@{/representatives/{id}/sales
+                                            (id=${representative.repId})}"
+                                   class="action-button manage-button">
+
+                                    Manage Sales
+
+                                </a>
+
+
+                                <a th:href="@{/representatives/edit/{id}
+                                            (id=${representative.repId})}"
+                                   class="action-button edit-button">
+
+                                    Edit
+
+                                </a>
+
+
+                                <form th:action="@{/representatives/delete/{id}
+                                                (id=${representative.repId})}"
+                                      method="post"
+                                      class="delete-form">
+
+                                    <button type="submit"
+                                            class="action-button delete-button"
+                                            onclick="return confirm('Delete this representative?');">
+
+                                        Delete
+
+                                    </button>
+
+                                </form>
+
+
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</div>
+
+</body>
+</html>

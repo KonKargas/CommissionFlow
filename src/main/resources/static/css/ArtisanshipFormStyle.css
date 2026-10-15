@@ -1,0 +1,314 @@
+.form-page-content {
+    flex: 1;
+
+    padding: 42px;
+}
+
+/* HEADER */
+
+.page-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    max-width: 850px;
+
+    margin-bottom: 28px;
+}
+
+.page-description {
+    margin: 9px 0 0;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+}
+
+.back-button {
+    padding: 10px 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    background: white;
+
+    color: #526174;
+
+    text-decoration: none;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition:
+        transform 0.2s ease,
+        color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.back-button:hover {
+    color: var(--primary);
+
+    background: #f8fafc;
+
+    transform: translateX(-2px);
+}
+
+/* CARD */
+
+.form-card {
+    max-width: 850px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 3px 12px rgba(15, 23, 42, 0.045);
+}
+
+.form-card-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 24px 27px;
+
+    border-bottom: 1px solid #edf0f4;
+}
+
+.form-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #eef4ff;
+
+    color: var(--primary);
+
+    font-weight: 700;
+}
+
+.form-card-header h2 {
+    margin: 0;
+
+    font-size: 17px;
+}
+
+.form-card-header p {
+    margin: 5px 0 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+}
+
+/* FORM */
+
+.artisanship-form {
+    padding: 30px 28px;
+}
+
+.form-section {
+    margin-bottom: 32px;
+}
+
+.form-section h3 {
+    margin: 0 0 18px;
+
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid #edf0f4;
+
+    color: #374151;
+
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+
+    color: #364152;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.required {
+    color: #dc2626;
+}
+
+.form-group input {
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 14px;
+
+    border: 1px solid #dce2ea;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: white;
+
+    color: var(--text-primary);
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #b0bac7;
+}
+
+.form-group input:focus {
+    border-color: #3b82f6;
+
+    box-shadow:
+        0 0 0 3px rgba(59, 130, 246, 0.10);
+}
+
+.phone-field {
+    grid-column: span 2;
+}
+
+/* ACTIONS */
+
+.form-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 35px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #edf0f4;
+}
+
+.cancel-button,
+.save-button {
+    min-height: 40px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 18px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.cancel-button {
+    color: #536278;
+
+    background: white;
+
+    border: 1px solid #dce2ea;
+}
+
+.cancel-button:hover {
+    background: #f8fafc;
+}
+
+.save-button {
+    border: none;
+
+    color: white;
+
+    background: var(--primary);
+
+    box-shadow:
+        0 4px 12px rgba(37, 99, 235, 0.18);
+}
+
+.save-button:hover {
+    background: var(--primary-hover);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .form-page-content {
+        padding: 30px;
+    }
+
+    .page-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .phone-field {
+        grid-column: span 1;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .cancel-button,
+    .save-button {
+        width: 100%;
+    }
+
+}

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title th:text="'CommissionFlow | ' + ${representative.fullName}">
+        CommissionFlow | Manage Sales
+    </title>
+    
+    <!-- Favicon -->
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logo.ico}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/SidebarStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/ManageSalesStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/FooterStyle.css}">
+          
+          	<link rel="stylesheet"
+	  	href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+
+<div class="page-container">
+
+    <main class="sales-content">
+
+
+        <!-- ==============================
+             HEADER
+        =============================== -->
+
+        <header class="page-header">
+
+            <div>
+
+                <p class="page-label">
+                    REPRESENTATIVE SALES
+                </p>
+
+                <h1 th:text="${representative.fullName}">
+                    Apostolos Zarras
+                </h1>
+
+                <div class="representative-meta">
+
+                    <span>VAT Number</span>
+
+                    <strong th:text="${representative.vatNumber}">
+                        130456093
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <a th:href="@{/representatives}"
+                   class="secondary-button">
+
+                    ← Representatives
+
+                </a>
+
+
+                <a th:href="@{/receipts/new(
+			        representativeId=${representative.repId},
+			        from='representatives'
+			    )}"
+			   class="primary-button">
+			
+			    + Add Receipt
+			
+			</a>
+
+            </div>
+
+        </header>
+
+
+        <!-- ==============================
+             MAIN STATISTICS
+        =============================== -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    Total Sales
+                </span>
+
+                <strong class="stat-value">
+
+                    €
+
+                    <span th:text="${#numbers.formatDecimal(
+                            totalSales,
+                            1,
+                            2)}">
+                        0.00
+                    </span>
+
+                </strong>
+
+                <span class="stat-description">
+                    Overall sales value
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    Total Items
+                </span>
+
+                <strong class="stat-value"
+                        th:text="${totalItems}">
+                    0
+                </strong>
+
+                <span class="stat-description">
+                    Items sold
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    Receipts
+                </span>
+
+                <strong class="stat-value"
+                        th:text="${receipts.size()}">
+                    0
+                </strong>
+
+                <span class="stat-description">
+                    Recorded receipts
+                </span>
+
+            </div>
+
+
+            <div class="stat-card commission-card">
+
+                <span class="stat-label">
+                    Commission
+                </span>
+
+                <strong class="stat-value">
+
+                    €
+
+                    <span th:text="${#numbers.formatDecimal(
+                            commission,
+                            1,
+                            2)}">
+                        0.00
+                    </span>
+
+                </strong>
+
+                <span class="stat-description">
+                    Calculated commission
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             CATEGORY SALES
+        =============================== -->
+
+        <section class="category-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Sales by Category
+                    </h2>
+
+                    <p>
+                        Sales value grouped by clothing category.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="category-grid">
+
+
+                <div class="category-card">
+
+                    <span class="category-name">
+                        Trousers
+                    </span>
+
+                    <strong>
+                        €
+                        <span th:text="${#numbers.formatDecimal(
+                                trousersSales,
+                                1,
+                                2)}">
+                            0.00
+                        </span>
+                    </strong>
+
+                </div>
+
+
+                <div class="category-card">
+
+                    <span class="category-name">
+                        Skirts
+                    </span>
+
+                    <strong>
+                        €
+                        <span th:text="${#numbers.formatDecimal(
+                                skirtsSales,
+                                1,
+                                2)}">
+                            0.00
+                        </span>
+                    </strong>
+
+                </div>
+
+
+                <div class="category-card">
+
+                    <span class="category-name">
+                        Blouses
+                    </span>
+
+                    <strong>
+                        €
+                        <span th:text="${#numbers.formatDecimal(
+                                blousesSales,
+                                1,
+                                2)}">
+                            0.00
+                        </span>
+                    </strong>
+
+                </div>
+
+
+                <div class="category-card">
+
+                    <span class="category-name">
+                        Coats
+                    </span>
+
+                    <strong>
+                        €
+                        <span th:text="${#numbers.formatDecimal(
+                                coatsSales,
+                                1,
+                                2)}">
+                            0.00
+                        </span>
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             RECEIPTS
+        =============================== -->
+
+        <section class="receipts-panel">
+
+
+            <div class="panel-header receipts-header">
+
+                <div>
+
+                    <h2>
+                        Sales Receipts
+                    </h2>
+
+                    <p>
+                        Receipts assigned to this representative.
+                    </p>
+
+                </div>
+
+
+               <a th:href="@{/receipts/new(
+			        representativeId=${representative.repId},
+			        from='representatives'
+			    )}"
+			   class="small-add-button">
+			
+			    + Add Receipt
+			
+			</a>
+
+            </div>
+
+
+            <!-- EMPTY STATE -->
+
+            <div class="empty-state"
+                 th:if="${#lists.isEmpty(receipts)}">
+
+                <div class="empty-icon">
+                    R
+                </div>
+
+                <h3>
+                    No receipts found
+                </h3>
+
+                <p>
+                    This representative does not have
+                    any recorded sales yet.
+                </p>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="table-wrapper"
+                 th:unless="${#lists.isEmpty(receipts)}">
+
+                <table class="receipts-table">
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Code</th>
+
+                        <th>Date</th>
+
+                        <th>Category</th>
+
+                        <th>Artisanship</th>
+
+                        <th>Items</th>
+
+                        <th>Sales Value</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                    <tr th:each="receipt : ${receipts}">
+
+
+                        <td>
+
+                            <span class="receipt-code"
+                                  th:text="${receipt.receiptCode}">
+                                1001
+                            </span>
+
+                        </td>
+
+
+                        <td th:text="${receipt.salesDate}">
+                            2026-10-05
+                        </td>
+
+
+                        <td>
+
+                            <span class="category-badge"
+                                  th:text="${receipt.receiptType}">
+
+                                TROUSERS
+
+                            </span>
+
+                        </td>
+
+
+                        <td th:text="${receipt.artisanship != null
+                                ? receipt.artisanship.artisanshipName
+                                : '-'}">
+
+                            Hand Made Clothes
+
+                        </td>
+
+
+                        <td th:text="${receipt.salesAmount}">
+                            10
+                        </td>
+
+
+                        <td>
+
+                            <strong>
+
+                                €
+
+                                <span th:text="${#numbers.formatDecimal(
+                                        receipt.salesPrice,
+                                        1,
+                                        2)}">
+                                    2000.00
+                                </span>
+
+                            </strong>
+
+                        </td>
+
+
+                        <td>
+
+                            <a th:href="@{/receipts/edit/{id}
+                                       (id=${receipt.receiptId})}"
+                               class="edit-button">
+
+                                Edit
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==============================
+             REPORT ACTION
+        =============================== -->
+
+        <section class="report-panel">
+
+            <div>
+
+                <h2>
+                    Sales Report
+                </h2>
+
+                <p>
+                    Generate a detailed sales and commission
+                    report for this representative.
+                </p>
+
+            </div>
+
+
+           <a th:href="@{/reports/full}"
+			   class="report-button">
+			
+			    Generate Report
+			
+			</a>
+
+        </section>
+
+
+    </main>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CommissionFlow | Artisanships</title>
+    
+    <!-- Favicon -->
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logo.ico}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/SidebarStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/ArtisanshipStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/FooterStyle.css}">
+          
+           
+<link rel="stylesheet"
+  	href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css">
+
+<link rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css">
+
+<link rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+
+<div class="page-container">
+
+    <main class="artisanships-content">
+
+
+        <!-- HEADER -->
+
+        <header class="page-header">
+
+            <div>
+
+                <p class="page-label">
+                    BUSINESS PARTNERS
+                </p>
+
+                <h1>Artisanships</h1>
+
+                <p class="page-description">
+                    Manage the clothing companies associated
+                    with sales receipts.
+                </p>
+
+            </div>
+
+
+            <a th:href="@{/artisanships/new}"
+               class="primary-button">
+
+                <span class="button-icon">+</span>
+
+                Add Artisanship
+
+            </a>
+
+        </header>
+
+
+        <!-- SUMMARY -->
+
+        <section class="summary-card">
+
+            <div class="summary-icon">
+                <i class="fi fi-ts-apartment"></i>
+            </div>
+
+            <div>
+
+                <span class="summary-label">
+                    Registered Artisanships
+                </span>
+
+                <strong th:text="${artisanships.size()}">
+                    0
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- PANEL -->
+
+        <section class="artisanships-panel">
+
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>Registered Artisanships</h2>
+
+                    <p>
+                        Companies connected with sales receipts.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- EMPTY -->
+
+            <div class="empty-state"
+                 th:if="${#lists.isEmpty(artisanships)}">
+
+                <div class="empty-icon">
+                    A
+                </div>
+
+                <h3>No artisanships yet</h3>
+
+                <p>
+                    Add your first artisanship before creating
+                    sales receipts.
+                </p>
+
+                <a th:href="@{/artisanships/new}"
+                   class="secondary-button">
+
+                    Add Artisanship
+
+                </a>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="table-wrapper"
+                 th:unless="${#lists.isEmpty(artisanships)}">
+
+                <table class="artisanships-table">
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Artisanship</th>
+
+                        <th>Location</th>
+
+                        <th>Address</th>
+
+                        <th>Phone</th>
+
+                        <th class="actions-column">
+                            Actions
+                        </th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                    <tr th:each="artisanship : ${artisanships}">
+
+
+                        <!-- NAME -->
+
+                        <td>
+
+                            <div class="artisanship-info">
+
+                                <div class="artisanship-avatar"
+                                     th:text="${#strings.substring(artisanship.artisanshipName, 0, 1)}">
+
+                                    H
+
+                                </div>
+
+                                <div>
+
+                                    <strong
+                                            th:text="${artisanship.artisanshipName}">
+                                        Hand Made Clothes
+                                    </strong>
+
+                                    <span>
+                                        Clothing Company
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <!-- LOCATION -->
+
+                        <td>
+
+                            <span th:if="${artisanship.artisanshipAddress != null}"
+                                  th:text="${artisanship.artisanshipAddress.city
+                                           + ', '
+                                           + artisanship.artisanshipAddress.country}">
+                                Ioannina, Greece
+                            </span>
+
+                            <span th:unless="${artisanship.artisanshipAddress != null}"
+                                  class="empty-value">
+                                —
+                            </span>
+
+                        </td>
+
+
+                        <!-- ADDRESS -->
+
+                        <td>
+
+                            <span th:if="${artisanship.artisanshipAddress != null}"
+                                  th:text="${artisanship.artisanshipAddress.street
+                                           + ' '
+                                           + artisanship.artisanshipAddress.number}">
+                                Kaloudi 10
+                            </span>
+
+                            <span th:unless="${artisanship.artisanshipAddress != null}"
+                                  class="empty-value">
+                                —
+                            </span>
+
+                        </td>
+
+
+                        <!-- PHONE -->
+
+                        <td>
+
+                            <span th:if="${artisanship.artisanshipAddress != null}"
+                                  class="phone-number"
+                                  th:text="${artisanship.artisanshipAddress.phoneNumber}">
+                                +30 26510 00000
+                            </span>
+
+                        </td>
+
+
+                        <!-- ACTIONS -->
+
+                        <td>
+
+                            <div class="table-actions">
+
+                                <a th:href="@{/artisanships/edit/{id}
+                                           (id=${artisanship.artisanshipId})}"
+                                   class="action-button edit-button">
+
+                                    Edit
+
+                                </a>
+
+
+                                <form th:action="@{/artisanships/delete/{id}
+                                                 (id=${artisanship.artisanshipId})}"
+                                      method="post"
+                                      class="delete-form">
+
+                                    <button type="submit"
+                                            class="action-button delete-button"
+                                            onclick="return confirm('Delete this artisanship?');">
+
+                                        Delete
+
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</div>
+
+</body>
+</html>

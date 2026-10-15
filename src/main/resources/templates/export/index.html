@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        CommissionFlow | Export Data
+    </title>
+    
+    <!-- Favicon -->
+	<link rel="icon" type="image/x-icon" th:href="@{/images/logo.ico}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/SidebarStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/ExportStyle.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/FooterStyle.css}">
+          
+          	<link rel="stylesheet"
+	  	href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-straight/css/uicons-thin-straight.css">
+	
+	<link rel="stylesheet"
+	      href="https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css">
+
+</head>
+
+
+<body>
+
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+
+
+<div class="page-container">
+
+    <main class="export-content">
+
+
+        <header class="page-header">
+
+            <div>
+
+                <p class="page-label">
+                    DATA MANAGEMENT
+                </p>
+
+                <h1>
+                    Export Data
+                </h1>
+
+                <p class="page-description">
+                    Export representative sales and receipt
+                    data in a supported external format.
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <section class="export-card">
+
+
+            <div class="card-header">
+
+                <div class="card-icon">
+                    ⇧
+                </div>
+
+
+                <div>
+
+                    <h2>
+                        Create Export File
+                    </h2>
+
+                    <p>
+                        Select a representative and the
+                        preferred output format.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <form th:action="@{/export/download}"
+                  method="get"
+                  class="export-form">
+
+
+                <div class="form-group">
+
+                    <label for="representativeId">
+                        Representative
+                    </label>
+
+
+                    <select id="representativeId"
+                            name="representativeId"
+                            required>
+
+                        <option value=""
+                                selected
+                                disabled>
+
+                            Select representative
+
+                        </option>
+
+
+                        <option th:each="representative : ${representatives}"
+                                th:value="${representative.repId}"
+                                th:text="${representative.fullName
+                                    + ' — '
+                                    + representative.vatNumber}">
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Export Format
+                    </label>
+
+
+                    <div class="format-selection">
+
+
+                        <label class="format-option">
+
+                            <input type="radio"
+                                   name="format"
+                                   value="txt"
+                                   checked>
+
+                            <span class="format-box">
+
+                                <strong>
+                                    TXT
+                                </strong>
+
+                                <small>
+                                    Plain text
+                                </small>
+
+                            </span>
+
+                        </label>
+
+
+                        <label class="format-option">
+
+                            <input type="radio"
+                                   name="format"
+                                   value="xml">
+
+                            <span class="format-box">
+
+                                <strong>
+                                    XML
+                                </strong>
+
+                                <small>
+                                    Structured XML
+                                </small>
+
+                            </span>
+
+                        </label>
+
+
+                        <label class="format-option">
+
+                            <input type="radio"
+                                   name="format"
+                                   value="html">
+
+                            <span class="format-box">
+
+                                <strong>
+                                    HTML
+                                </strong>
+
+                                <small>
+                                    HTML document
+                                </small>
+
+                            </span>
+
+                        </label>
+
+
+                    </div>
+
+                </div>
+
+
+                <div class="export-note">
+
+                    <strong>
+                        Import compatible
+                    </strong>
+
+                    <p>
+                        Exported files use the same structure
+                        as CommissionFlow import files and can
+                        be imported again later.
+                    </p>
+
+                </div>
+
+
+                <button type="submit"
+                        class="export-button">
+
+                    Export Data
+
+                </button>
+
+
+            </form>
+            
+            <div class="export-all-section">
+
+			    <div class="export-all-info">
+			
+			        <strong>
+			            Export All Representatives
+			        </strong>
+			
+			        <p>
+			            Create a ZIP archive containing one export file
+			            for every registered representative.
+			        </p>
+			
+			    </div>
+			
+			
+			    <form th:action="@{/export/download-all}"
+			          method="get"
+			          class="export-all-form">
+			
+			
+			        <select name="format"
+			                class="export-all-format"
+			                required>
+			
+			            <option value="txt">
+			                TXT
+			            </option>
+			
+			            <option value="xml">
+			                XML
+			            </option>
+			
+			            <option value="html">
+			                HTML
+			            </option>
+			
+			        </select>
+			
+			
+			        <button type="submit"
+			                class="export-all-button">
+			
+			            ⇧ Export All as ZIP
+			
+			        </button>
+			
+			    </form>
+			
+			</div>
+
+        </section>
+
+
+    </main>
+
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</div>
+
+</body>
+</html>

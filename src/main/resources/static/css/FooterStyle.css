@@ -1,0 +1,45 @@
+footer {
+    min-height: 68px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 18px 35px;
+
+    background: #ffffff;
+
+    border-top: 1px solid #e5e9ef;
+
+    color: #8a96a8;
+
+    font-size: 12px;
+}
+
+footer p {
+    margin: 0;
+
+    text-align: center;
+}
+
+.footer-separator {
+    display: inline-block;
+
+    margin: 0 9px;
+
+    color: #c2c8d1;
+}
+
+footer a {
+    color: #49647f;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+footer a:hover {
+    color: #2563eb;
+}
