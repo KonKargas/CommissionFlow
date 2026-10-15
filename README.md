@@ -252,23 +252,23 @@ The generated artifact will be placed in the `target/` directory.
 
 ### Dashboard
 
-![CommissionFlow Dashboard](docs/screenshots/dashboard.png)
+![CommissionFlow Dashboard](src/main/resources/static/screenshots/dashboard.png)
 
 ### Representatives
 
-![Representatives Management](docs/screenshots/representatives.png)
+![Representatives Management](src/main/resources/static/screenshots/add-representative.png)
 
-### Manage Sales
+### Artisanships
 
-![Representative Sales Management](docs/screenshots/manage-sales.png)
+![Artisanship Management](src/main/resources/static/screenshots/add-artisanship.png)
 
 ### Import Data
 
-![Import Data](docs/screenshots/import-data.png)
+![Import Data](src/main/resources/static/screenshots/import-data.png)
 
 ### Reports
 
-![Reports](docs/screenshots/reports.png)
+![Reports](src/main/resources/static/screenshots/reports.png)
 
 ## Notes on Data Integrity
 
