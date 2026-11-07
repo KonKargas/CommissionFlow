@@ -283,7 +283,7 @@ This public repository includes the application source code, Maven configuration
 ## Author
 
 **Konstantinos Kargas**  
-Software Developer
+Full-Stack Software Engineer
 
 - Website: [kkargas.com](https://kkargas.com)
 - GitHub: [KonKargas](https://github.com/KonKargas)
